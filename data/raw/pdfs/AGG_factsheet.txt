@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: iShares Core US Aggregate Bond ETF
+Ticker Symbol: AGG
+Asset Class: Exchange Traded Fund (ETF)
+Category: Intermediate Core Bond
+
+FUND OVERVIEW
+iShares Core US Aggregate Bond ETF (AGG) seeks to provide investment results that correspond generally 
+to the price and yield performance of the Bloomberg US Aggregate Bond Index.
+
+KEY FACTS
+Inception Date: 2003-09-26
+Annual Expense Ratio: 0.0003 (0.03%)
+Total Net Assets: $108.7 Billion
+Benchmark Index: Bloomberg US Aggregate Bond Index
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: US Treasury 2.5%
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0003
+Total Annual Fund Operating Expenses: 0.0003
+Net Expense Ratio: 0.0003
+
+PERFORMANCE SUMMARY
+The fund tracks the Bloomberg US Aggregate Bond Index and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.

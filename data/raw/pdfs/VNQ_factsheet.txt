@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: Vanguard Real Estate ETF
+Ticker Symbol: VNQ
+Asset Class: Exchange Traded Fund (ETF)
+Category: Real Estate
+
+FUND OVERVIEW
+Vanguard Real Estate ETF (VNQ) seeks to provide investment results that correspond generally 
+to the price and yield performance of the MSCI US Investable Market Real Estate 25/50 Index.
+
+KEY FACTS
+Inception Date: 2004-09-23
+Annual Expense Ratio: 0.0012 (0.12%)
+Total Net Assets: $28.4 Billion
+Benchmark Index: MSCI US Investable Market Real Estate 25/50 Index
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: Prologis Inc
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0012
+Total Annual Fund Operating Expenses: 0.0012
+Net Expense Ratio: 0.0012
+
+PERFORMANCE SUMMARY
+The fund tracks the MSCI US Investable Market Real Estate 25/50 Index and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.

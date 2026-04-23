@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: SPDR Gold Shares
+Ticker Symbol: GLD
+Asset Class: Exchange Traded Fund (ETF)
+Category: Commodities
+
+FUND OVERVIEW
+SPDR Gold Shares (GLD) seeks to provide investment results that correspond generally 
+to the price and yield performance of the Gold Spot Price.
+
+KEY FACTS
+Inception Date: 2004-11-18
+Annual Expense Ratio: 0.0040 (0.4%)
+Total Net Assets: $73.2 Billion
+Benchmark Index: Gold Spot Price
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: Gold Bullion
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0040
+Total Annual Fund Operating Expenses: 0.0040
+Net Expense Ratio: 0.0040
+
+PERFORMANCE SUMMARY
+The fund tracks the Gold Spot Price and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.

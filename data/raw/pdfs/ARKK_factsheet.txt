@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: ARK Innovation ETF
+Ticker Symbol: ARKK
+Asset Class: Exchange Traded Fund (ETF)
+Category: Mid-Cap Growth
+
+FUND OVERVIEW
+ARK Innovation ETF (ARKK) seeks to provide investment results that correspond generally 
+to the price and yield performance of the None.
+
+KEY FACTS
+Inception Date: 2014-10-31
+Annual Expense Ratio: 0.0075 (0.75%)
+Total Net Assets: $6.8 Billion
+Benchmark Index: None
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: Tesla Inc
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0075
+Total Annual Fund Operating Expenses: 0.0075
+Net Expense Ratio: 0.0075
+
+PERFORMANCE SUMMARY
+The fund tracks the None and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.

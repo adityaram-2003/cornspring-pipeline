@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: iShares MSCI EAFE ETF
+Ticker Symbol: EFA
+Asset Class: Exchange Traded Fund (ETF)
+Category: Foreign Large Blend
+
+FUND OVERVIEW
+iShares MSCI EAFE ETF (EFA) seeks to provide investment results that correspond generally 
+to the price and yield performance of the MSCI EAFE Index.
+
+KEY FACTS
+Inception Date: 2001-08-14
+Annual Expense Ratio: 0.0032 (0.32%)
+Total Net Assets: $52.3 Billion
+Benchmark Index: MSCI EAFE Index
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: Nestle SA
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0032
+Total Annual Fund Operating Expenses: 0.0032
+Net Expense Ratio: 0.0032
+
+PERFORMANCE SUMMARY
+The fund tracks the MSCI EAFE Index and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.

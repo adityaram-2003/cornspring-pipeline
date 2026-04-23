@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: iShares iBoxx High Yield Corporate Bond ETF
+Ticker Symbol: HYG
+Asset Class: Exchange Traded Fund (ETF)
+Category: High Yield Bond
+
+FUND OVERVIEW
+iShares iBoxx High Yield Corporate Bond ETF (HYG) seeks to provide investment results that correspond generally 
+to the price and yield performance of the Markit iBoxx USD Liquid High Yield Index.
+
+KEY FACTS
+Inception Date: 2007-04-04
+Annual Expense Ratio: 0.0049 (0.49%)
+Total Net Assets: $18.6 Billion
+Benchmark Index: Markit iBoxx USD Liquid High Yield Index
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: Sprint Capital Corp
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0049
+Total Annual Fund Operating Expenses: 0.0049
+Net Expense Ratio: 0.0049
+
+PERFORMANCE SUMMARY
+The fund tracks the Markit iBoxx USD Liquid High Yield Index and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.

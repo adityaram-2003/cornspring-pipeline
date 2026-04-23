@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: Vanguard Total Stock Market ETF
+Ticker Symbol: VTI
+Asset Class: Exchange Traded Fund (ETF)
+Category: Large Blend
+
+FUND OVERVIEW
+Vanguard Total Stock Market ETF (VTI) seeks to provide investment results that correspond generally 
+to the price and yield performance of the CRSP US Total Market Index.
+
+KEY FACTS
+Inception Date: 2001-05-24
+Annual Expense Ratio: 0.0003 (0.03%)
+Total Net Assets: $418.9 Billion
+Benchmark Index: CRSP US Total Market Index
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: Apple Inc
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0003
+Total Annual Fund Operating Expenses: 0.0003
+Net Expense Ratio: 0.0003
+
+PERFORMANCE SUMMARY
+The fund tracks the CRSP US Total Market Index and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.

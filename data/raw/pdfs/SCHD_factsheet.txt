@@ -1,0 +1,39 @@
+FUND FACT SHEET
+
+Fund Name: Schwab US Dividend Equity ETF
+Ticker Symbol: SCHD
+Asset Class: Exchange Traded Fund (ETF)
+Category: Large Value
+
+FUND OVERVIEW
+Schwab US Dividend Equity ETF (SCHD) seeks to provide investment results that correspond generally 
+to the price and yield performance of the Dow Jones US Dividend 100 Index.
+
+KEY FACTS
+Inception Date: 2011-10-20
+Annual Expense Ratio: 0.0006 (0.06%)
+Total Net Assets: $63.1 Billion
+Benchmark Index: Dow Jones US Dividend 100 Index
+
+PORTFOLIO CHARACTERISTICS
+Number of Holdings: 150
+Largest Holding: Broadcom Inc
+Portfolio Turnover Rate: 3%
+Distribution Frequency: Quarterly
+
+EXPENSE INFORMATION
+Management Fee: 0.0006
+Total Annual Fund Operating Expenses: 0.0006
+Net Expense Ratio: 0.0006
+
+PERFORMANCE SUMMARY
+The fund tracks the Dow Jones US Dividend 100 Index and aims to minimize tracking error.
+Past performance does not guarantee future results.
+
+RISK CONSIDERATIONS
+Investors should carefully consider the investment objectives, risks, charges, 
+and expenses before investing. Market risk, liquidity risk, and tracking error 
+risk are among the primary risks associated with this fund.
+
+This fact sheet is for informational purposes only and does not constitute 
+investment advice. Please read the full prospectus before investing.
