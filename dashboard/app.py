@@ -757,30 +757,29 @@ from the warehouse. Format key numbers in bold. Keep responses under 150 words."
 
     def build_context(user_question=""):
         with engine.connect() as conn:
-            # Try to find ticker mentioned in question
-            mentioned = None
-            with engine.connect() as c2:
-                tickers = pd.read_sql("SELECT DISTINCT ticker FROM etf_prices", c2)['ticker'].tolist()
-            for t in tickers:
-                if t.upper() in user_question.upper():
-                    mentioned = t
-                    break
+            tickers_df = pd.read_sql("SELECT DISTINCT ticker FROM etf_prices", engine)
+            all_tickers = tickers_df['ticker'].tolist()
 
-            # Pull data for mentioned ticker + default set
-            default = ['SPY','QQQ','AGG','GLD','EFA']
-            if mentioned and mentioned not in default:
-                default = [mentioned] + default[:4]
+        # Find ALL tickers mentioned in question
+        mentioned = []
+        for t in all_tickers:
+            if t.upper() in user_question.upper().split():
+                mentioned.append(t)
 
-            ticker_filter = ','.join([f"'{t}'" for t in default])
-            sample = pd.read_sql(f"""
-                SELECT p.ticker, p.date, p.close, i.rsi_14, i.sma_20, i.volatility_30d
-                FROM etf_prices p
-                JOIN technical_indicators i ON p.ticker=i.ticker AND p.date=i.date
-                WHERE p.ticker IN ({ticker_filter})
-                ORDER BY p.ticker, p.date DESC
-                LIMIT 10
-            """, engine)
-            return sample.to_string(index=False)
+        # Merge with defaults
+        default = ['SPY', 'QQQ', 'AGG', 'GLD', 'EFA']
+        combined = list(dict.fromkeys(mentioned + default))[:8]
+
+        ticker_filter = ','.join([f"'{t}'" for t in combined])
+        sample = pd.read_sql(f"""
+            SELECT p.ticker, p.date, p.close, i.rsi_14, i.sma_20, i.volatility_30d
+            FROM etf_prices p
+            JOIN technical_indicators i ON p.ticker=i.ticker AND p.date=i.date
+            WHERE p.ticker IN ({ticker_filter})
+            ORDER BY p.ticker, p.date DESC
+            LIMIT 15
+        """, engine)
+        return sample.to_string(index=False)
 
     QUICK_PROMPTS = [
         "What is SPY's current RSI and what does it signal?",
