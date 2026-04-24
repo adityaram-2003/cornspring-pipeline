@@ -21,6 +21,14 @@ import yfinance as yf
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
+# Load Streamlit secrets into environment
+try:
+    import streamlit as st
+    for key, val in st.secrets.items():
+        os.environ[key] = str(val)
+except Exception:
+    pass
+
 load_dotenv()
 engine = get_engine()
 def sql(query):
