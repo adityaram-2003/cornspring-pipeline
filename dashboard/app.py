@@ -757,29 +757,51 @@ from the warehouse. Format key numbers in bold. Keep responses under 150 words."
 
     def build_context(user_question=""):
         import re
-        tokens = set(re.findall(r'[A-Z]{2,5}', user_question.upper()))
+        tokens = set(re.findall(r'[A-Z]{2,6}', user_question.upper()))
+        
+        # Always include these core tickers + any mentioned ones
+        default = ['SPY', 'QQQ', 'AGG', 'GLD', 'EFA', 'VTI', 'HYG', 'VNQ']
         
         with engine.connect() as conn:
-            all_tickers = [r[0] for r in conn.execute(text("SELECT DISTINCT ticker FROM etf_prices")).fetchall()]
+            # Get all tickers
+            all_tickers = [r[0] for r in conn.execute(text(
+                "SELECT DISTINCT ticker FROM etf_prices ORDER BY ticker"
+            )).fetchall()]
             
-            mentioned = [t for t in all_tickers if t.upper() in tokens]
-            default = ['SPY', 'QQQ', 'AGG', 'GLD', 'EFA']
+            # Find mentioned tickers
+            mentioned = [t for t in all_tickers if t in tokens]
+            
+            # Build final list — mentioned first, then defaults
             combined = list(dict.fromkeys(mentioned + default))[:8]
             
-            ticker_filter = ','.join([f"'{t}'" for t in combined])
-            result = conn.execute(text(f"""
-                SELECT p.ticker, p.date, p.close, i.rsi_14, i.sma_20, i.volatility_30d
+            # Build query with explicit IN list
+            placeholders = ', '.join([f"'{t}'" for t in combined])
+            
+            rows = conn.execute(text(f"""
+                SELECT p.ticker, p.date::text, 
+                    ROUND(p.close::numeric, 4) as close,
+                    ROUND(i.rsi_14::numeric, 4) as rsi_14,
+                    ROUND(i.sma_20::numeric, 4) as sma_20,
+                    ROUND(i.volatility_30d::numeric, 6) as volatility_30d
                 FROM etf_prices p
-                JOIN technical_indicators i ON p.ticker=i.ticker AND p.date=i.date
-                WHERE p.ticker IN ({ticker_filter})
-                ORDER BY p.ticker, p.date DESC
-                LIMIT 15
-            """))
-            rows = result.fetchall()
-            cols = list(result.keys())
-            df = pd.DataFrame(rows, columns=cols)
-        
-        return df.to_string(index=False)
+                JOIN technical_indicators i 
+                    ON p.ticker = i.ticker AND p.date = i.date
+                WHERE p.ticker IN ({placeholders})
+                AND p.date = (
+                    SELECT MAX(date) FROM etf_prices WHERE ticker = p.ticker
+                )
+                ORDER BY p.ticker
+            """)).fetchall()
+            
+            if not rows:
+                return "No data available."
+            
+            lines = ["ticker | date | close | rsi_14 | sma_20 | volatility_30d"]
+            lines.append("-" * 70)
+            for r in rows:
+                lines.append(f"{r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]}")
+            
+            return "\n".join(lines)
 
     QUICK_PROMPTS = [
         "What is SPY's current RSI and what does it signal?",
