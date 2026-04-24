@@ -755,14 +755,30 @@ market trends, ETF comparisons, and pipeline operations. Be precise, data-driven
 and concise. Use numbers and specifics. When referencing data, cite the exact values
 from the warehouse. Format key numbers in bold. Keep responses under 150 words."""
 
-    def build_context():
+    def build_context(user_question=""):
         with engine.connect() as conn:
-            sample = pd.read_sql("""
+            # Try to find ticker mentioned in question
+            mentioned = None
+            with engine.connect() as c2:
+                tickers = pd.read_sql("SELECT DISTINCT ticker FROM etf_prices", c2)['ticker'].tolist()
+            for t in tickers:
+                if t.upper() in user_question.upper():
+                    mentioned = t
+                    break
+
+            # Pull data for mentioned ticker + default set
+            default = ['SPY','QQQ','AGG','GLD','EFA']
+            if mentioned and mentioned not in default:
+                default = [mentioned] + default[:4]
+
+            ticker_filter = ','.join([f"'{t}'" for t in default])
+            sample = pd.read_sql(f"""
                 SELECT p.ticker, p.date, p.close, i.rsi_14, i.sma_20, i.volatility_30d
                 FROM etf_prices p
                 JOIN technical_indicators i ON p.ticker=i.ticker AND p.date=i.date
-                WHERE p.ticker IN ('SPY','QQQ','AGG','GLD','EFA')
-                ORDER BY p.date DESC LIMIT 5
+                WHERE p.ticker IN ({ticker_filter})
+                ORDER BY p.ticker, p.date DESC
+                LIMIT 10
             """, engine)
             return sample.to_string(index=False)
 
@@ -807,7 +823,7 @@ from the warehouse. Format key numbers in bold. Keep responses under 150 words."
     )
 
     if st.button("Send →", type="primary") and user_input:
-        context = build_context()
+        context = build_context(user_input)
         full_prompt = f"""Here is the latest data snapshot from the warehouse:
 
 {context}
