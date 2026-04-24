@@ -756,15 +756,15 @@ and concise. Use numbers and specifics. When referencing data, cite the exact va
 from the warehouse. Format key numbers in bold. Keep responses under 150 words."""
 
     def build_context(user_question=""):
-        with engine.connect() as conn:
-            tickers_df = pd.read_sql("SELECT DISTINCT ticker FROM etf_prices", engine)
-            all_tickers = tickers_df['ticker'].tolist()
+        import re
+        tickers_df = pd.read_sql("SELECT DISTINCT ticker FROM etf_prices", engine)
+        all_tickers = tickers_df['ticker'].tolist()
 
-        # Find ALL tickers mentioned in question
-        mentioned = []
-        for t in all_tickers:
-            if t.upper() in user_question.upper().split():
-                mentioned.append(t)
+        # Extract all word tokens from question (strip punctuation)
+        tokens = set(re.findall(r'[A-Z]{2,5}', user_question.upper()))
+
+        # Find mentioned tickers
+        mentioned = [t for t in all_tickers if t.upper() in tokens]
 
         # Merge with defaults
         default = ['SPY', 'QQQ', 'AGG', 'GLD', 'EFA']
