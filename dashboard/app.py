@@ -757,29 +757,29 @@ from the warehouse. Format key numbers in bold. Keep responses under 150 words."
 
     def build_context(user_question=""):
         import re
-        tickers_df = pd.read_sql("SELECT DISTINCT ticker FROM etf_prices", engine)
-        all_tickers = tickers_df['ticker'].tolist()
-
-        # Extract all word tokens from question (strip punctuation)
         tokens = set(re.findall(r'[A-Z]{2,5}', user_question.upper()))
-
-        # Find mentioned tickers
-        mentioned = [t for t in all_tickers if t.upper() in tokens]
-
-        # Merge with defaults
-        default = ['SPY', 'QQQ', 'AGG', 'GLD', 'EFA']
-        combined = list(dict.fromkeys(mentioned + default))[:8]
-
-        ticker_filter = ','.join([f"'{t}'" for t in combined])
-        sample = pd.read_sql(f"""
-            SELECT p.ticker, p.date, p.close, i.rsi_14, i.sma_20, i.volatility_30d
-            FROM etf_prices p
-            JOIN technical_indicators i ON p.ticker=i.ticker AND p.date=i.date
-            WHERE p.ticker IN ({ticker_filter})
-            ORDER BY p.ticker, p.date DESC
-            LIMIT 15
-        """, engine)
-        return sample.to_string(index=False)
+        
+        with engine.connect() as conn:
+            all_tickers = [r[0] for r in conn.execute(text("SELECT DISTINCT ticker FROM etf_prices")).fetchall()]
+            
+            mentioned = [t for t in all_tickers if t.upper() in tokens]
+            default = ['SPY', 'QQQ', 'AGG', 'GLD', 'EFA']
+            combined = list(dict.fromkeys(mentioned + default))[:8]
+            
+            ticker_filter = ','.join([f"'{t}'" for t in combined])
+            result = conn.execute(text(f"""
+                SELECT p.ticker, p.date, p.close, i.rsi_14, i.sma_20, i.volatility_30d
+                FROM etf_prices p
+                JOIN technical_indicators i ON p.ticker=i.ticker AND p.date=i.date
+                WHERE p.ticker IN ({ticker_filter})
+                ORDER BY p.ticker, p.date DESC
+                LIMIT 15
+            """))
+            rows = result.fetchall()
+            cols = list(result.keys())
+            df = pd.DataFrame(rows, columns=cols)
+        
+        return df.to_string(index=False)
 
     QUICK_PROMPTS = [
         "What is SPY's current RSI and what does it signal?",
