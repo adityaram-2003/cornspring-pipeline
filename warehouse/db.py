@@ -1,29 +1,25 @@
 import os
-from sqlalchemy import create_engine, text
+from sqlalchemy import create_engine
 from dotenv import load_dotenv
 
 load_dotenv()
 
-DB_NAME = os.getenv("DB_NAME")
-DB_USER = os.getenv("DB_USER")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = os.getenv("DB_PORT")
+# Use Neon in production, local as fallback
+DATABASE_URL = os.getenv("NEON_DATABASE_URL") or (
+    f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}"
+    f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+)
 
-DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
-engine = create_engine(DATABASE_URL, pool_size=10, max_overflow=20)
+engine = create_engine(DATABASE_URL, pool_size=5, max_overflow=10)
 
 def get_engine():
     return engine
 
 def test_connection():
-    try:
-        with engine.connect() as conn:
-            result = conn.execute(text("SELECT version();"))
-            print("PostgreSQL connected:", result.fetchone()[0])
-    except Exception as e:
-        print("Connection failed:", e)
+    from sqlalchemy import text
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT version();"))
+        print("Connected:", result.fetchone()[0])
 
 if __name__ == "__main__":
     test_connection()
