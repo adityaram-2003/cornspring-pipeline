@@ -636,8 +636,9 @@ with tab3:
     <div class="cs-card">
         <div class="cs-card-title">About This Engine</div>
         <div style="font-size:0.85rem;color:#8b949e;line-height:1.7;">
-        This engine replicates the exact methodology used by Cornspring's Data Engineering team
-        to calculate multi-currency hedged returns and benchmark tracking error.
+        This engine replicates the index replication methodology described by Cornspring's 
+        Data Engineering team on public profiles — calculating multi-currency hedged returns 
+        and benchmark tracking error.
         Cross-currency hedging algorithms target tracking error below <strong style="color:#10b981;">0.01%</strong> against official benchmarks.
         </div>
     </div>
@@ -759,49 +760,48 @@ from the warehouse. Format key numbers in bold. Keep responses under 150 words."
         import re
         tokens = set(re.findall(r'[A-Z]{2,6}', user_question.upper()))
         
-        # Always include these core tickers + any mentioned ones
         default = ['SPY', 'QQQ', 'AGG', 'GLD', 'EFA', 'VTI', 'HYG', 'VNQ']
         
-        with engine.connect() as conn:
-            # Get all tickers
-            all_tickers = [r[0] for r in conn.execute(text(
-                "SELECT DISTINCT ticker FROM etf_prices ORDER BY ticker"
-            )).fetchall()]
-            
-            # Find mentioned tickers
-            mentioned = [t for t in all_tickers if t in tokens]
-            
-            # Build final list — mentioned first, then defaults
-            combined = list(dict.fromkeys(mentioned + default))[:8]
-            
-            # Build query with explicit IN list
-            placeholders = ', '.join([f"'{t}'" for t in combined])
-            
-            rows = conn.execute(text(f"""
-                SELECT p.ticker, p.date::text, 
-                    ROUND(p.close::numeric, 4) as close,
-                    ROUND(i.rsi_14::numeric, 4) as rsi_14,
-                    ROUND(i.sma_20::numeric, 4) as sma_20,
-                    ROUND(i.volatility_30d::numeric, 6) as volatility_30d
-                FROM etf_prices p
-                JOIN technical_indicators i 
-                    ON p.ticker = i.ticker AND p.date = i.date
-                WHERE p.ticker IN ({placeholders})
-                AND p.date = (
-                    SELECT MAX(date) FROM etf_prices WHERE ticker = p.ticker
-                )
-                ORDER BY p.ticker
-            """)).fetchall()
-            
-            if not rows:
-                return "No data available."
-            
-            lines = ["ticker | date | close | rsi_14 | sma_20 | volatility_30d"]
-            lines.append("-" * 70)
-            for r in rows:
-                lines.append(f"{r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]}")
-            
-            return "\n".join(lines)
+        try:
+            with engine.connect() as conn:
+                all_tickers = [r[0] for r in conn.execute(text(
+                    "SELECT DISTINCT ticker FROM etf_prices ORDER BY ticker"
+                )).fetchall()]
+                
+                mentioned = [t for t in all_tickers if t in tokens]
+                combined = list(dict.fromkeys(mentioned + default))[:8]
+                
+                rows = []
+                for t in combined:
+                    result = conn.execute(text("""
+                        SELECT p.ticker, p.date::text,
+                            ROUND(p.close::numeric, 2) as close,
+                            ROUND(i.rsi_14::numeric, 2) as rsi_14,
+                            ROUND(i.sma_20::numeric, 2) as sma_20,
+                            ROUND(i.volatility_30d::numeric, 4) as vol
+                        FROM etf_prices p
+                        JOIN technical_indicators i
+                            ON p.ticker = i.ticker AND p.date = i.date
+                        WHERE p.ticker = :t
+                        ORDER BY p.date DESC
+                        LIMIT 1
+                    """), {'t': t}).fetchone()
+                    
+                    if result:
+                        rows.append(result)
+                
+                if not rows:
+                    return "No data available."
+                
+                lines = ["ticker | date | close | rsi_14 | sma_20 | volatility"]
+                lines.append("-" * 60)
+                for r in rows:
+                    lines.append(f"{r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]} | {r[5]}")
+                
+                return "\n".join(lines)
+                
+        except Exception as e:
+            return f"Data fetch error: {str(e)}"
 
     QUICK_PROMPTS = [
         "What is SPY's current RSI and what does it signal?",
