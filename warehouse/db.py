@@ -1,5 +1,9 @@
 import os
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
+
+# Load .env before anything reads the environment (this module runs at import time)
+load_dotenv()
 
 def get_database_url():
     # Try Streamlit secrets first

@@ -1,0 +1,25 @@
+{
+  "name": "cornspring-terminal",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.1",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "next": "^16.4.6",
+    "plotly.js-dist-min": "^4.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.23.1",
+    "pg": "^8.23.1"
+  }
+}
